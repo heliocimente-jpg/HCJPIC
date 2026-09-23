@@ -1,0 +1,6 @@
+{
+  "name": "MePic - Gerador de Fotos e Vídeos IA",
+  "description": "Retratos de casal e de família, editor de vídeo e editor de fotos com inteligência artificial e gerador de imagem numa só aplicação. Transforme fotografias em arte IA.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

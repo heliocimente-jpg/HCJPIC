@@ -1,0 +1,126 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "User profile with authentication and preferences",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User unique identifier from Firebase Auth"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar image URL"
+        },
+        "tokenBalance": {
+          "type": "number",
+          "description": "Token balance for user"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of account creation"
+        }
+      },
+      "required": ["userId", "email"]
+    },
+    "creations": {
+      "title": "AI Creation Item",
+      "description": "Generated photos, videos, and music items",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique creation ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user ID"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["image", "video", "audio"]
+        },
+        "feature": {
+          "type": "string",
+          "description": "Feature category name"
+        },
+        "title": {
+          "type": "string",
+          "description": "Creation title"
+        },
+        "mediaUrl": {
+          "type": "string",
+          "description": "Direct media URL or base64 data"
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "Preview thumbnail URL"
+        },
+        "modelUsed": {
+          "type": "string",
+          "description": "AI Model name used"
+        },
+        "promptOrStyle": {
+          "type": "string",
+          "description": "Prompt or style parameters"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["id", "userId", "type", "mediaUrl"]
+    },
+    "chats": {
+      "title": "Chat Message Thread",
+      "description": "Multi-turn Gemini chat conversations",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Chat session ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user ID"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "assistant", "model"]
+        },
+        "content": {
+          "type": "string",
+          "description": "Message content"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp"
+        }
+      },
+      "required": ["id", "userId", "role", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile collection partitioned by user ID"
+    },
+    "/creations/{creationId}": {
+      "schema": "creations",
+      "description": "User generated creations collection"
+    },
+    "/chats/{chatId}": {
+      "schema": "chats",
+      "description": "Chat messages collection"
+    }
+  }
+}
